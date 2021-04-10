@@ -15,10 +15,13 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import FolderIcon from "@material-ui/icons/Folder";
 import DeleteIcon from "@material-ui/icons/Delete";
+import PublishIcon from "@material-ui/icons/Publish";
+
 import Layout from "../../components/Layout";
 
 // File Upload Component
 const FileUploadInput = ({ addFile, uploadFiles }) => {
+  const classes = useStyles();
   return (
     <>
       <input
@@ -30,10 +33,24 @@ const FileUploadInput = ({ addFile, uploadFiles }) => {
         onChange={(event) => addFile(event.target.files)}
       />
       <label htmlFor="file-upload-icon">
-        <Fab color="primary" aria-label="add" component="span">
+        <Fab
+          color="primary"
+          aria-label="add"
+          component="span"
+          className={classes.fileUploadInput}
+        >
           <AddIcon />
         </Fab>
       </label>
+      <Fab
+        color="primary"
+        aria-label="upload"
+        component="span"
+        className={classes.fileUploadInput}
+        onClick={() => uploadFiles()}
+      >
+        <PublishIcon />
+      </Fab>
     </>
   );
 };
@@ -83,6 +100,10 @@ const FileList = ({ filesData, deleteFile }) => {
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(4),
+    textAlign: "center",
+  },
+  fileUploadInput: {
+    margin: theme.spacing(1),
   },
 }));
 
